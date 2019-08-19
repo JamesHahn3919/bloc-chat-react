@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
 import RoomList from "./components/RoomList";
+import MessageList from "./components/MessageList";
 import * as firebase from "firebase";
 
 // Your web app's Firebase configuration
@@ -16,14 +17,38 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-function App() {
-  return (
-    <div className="App">
-      <div className="RoomList">
-        <RoomList firebase={firebase.app()} />
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeRoom: null,
+      user: null
+    };
+  }
+
+  setActiveRoom(room) {
+    this.setState({ activeRoom: room });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <div className="RoomList">
+          <RoomList
+            firebase={firebase.app()}
+            activeRoom={this.state.activeRoom}
+            setActiveRoom={this.setActiveRoom.bind(this)}
+          />
+        </div>
+        <div className="MessageList">
+          <MessageList
+            firebase={firebase.app()}
+            activeRoom={this.state.activeRoom}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

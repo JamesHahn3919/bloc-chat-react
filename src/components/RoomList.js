@@ -17,6 +17,9 @@ class RoomList extends Component {
       const room = snapshot.val();
       room.key = snapshot.key;
       this.setState({ rooms: this.state.rooms.concat(room) });
+      if (this.state.rooms.length === 1) {
+        this.props.setActiveRoom(room);
+      }
     });
   }
 
@@ -38,28 +41,33 @@ class RoomList extends Component {
 
   render() {
     return (
-      <section className="all-rooms">
-        <div>
-          {" "}
-          {this.state.rooms.map(room => (
-            <li key={room.key}>{room.name}</li>
-          ))}
-          <form
-            id="new-room"
-            onSubmit={e => {
-              this.handleSubmit(e);
-            }}
-          >
-            <input
-              type="text"
-              value={this.state.newRoomName}
-              onChange={this.handleChange.bind(this)}
-              name="newRoomName"
-              placeholder="New Room"
-            />
-            <input type="submit" value="+" />
-          </form>
-        </div>
+      <section className="room-list">
+        {" "}
+        {this.state.rooms.map(room => (
+          <ul key={room.key}>
+            <button
+              className="room-name"
+              onClick={() => this.props.setActiveRoom(room)}
+            >
+              {room.name}
+            </button>
+          </ul>
+        ))}
+        <form
+          id="new-room"
+          onSubmit={e => {
+            this.handleSubmit(e);
+          }}
+        >
+          <input
+            type="text"
+            value={this.state.newRoomName}
+            onChange={this.handleChange.bind(this)}
+            name="newRoomName"
+            placeholder="New Room"
+          />
+          <input type="submit" value="+" />
+        </form>
       </section>
     );
   }
