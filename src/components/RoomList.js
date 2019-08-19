@@ -19,7 +19,15 @@ class RoomList extends Component {
   }
 
   render() {
-    return <section className="rooms"> </section>;
+    return (
+      <section className="all-rooms">
+        <div>
+          {this.state.rooms.map(room => (
+            <li key={room.key}>{room.name}</li>
+          ))}
+        </div>
+      </section>
+    );
   }
 }
 
