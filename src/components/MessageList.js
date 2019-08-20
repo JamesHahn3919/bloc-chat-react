@@ -6,7 +6,8 @@ class MessageList extends Component {
 
     this.state = {
       allMessages: [],
-      displayedMessages: []
+      displayedMessages: [],
+      newMessageText: " "
     };
     this.messagesRef = this.props.firebase.database().ref("messages");
   }
@@ -30,6 +31,21 @@ class MessageList extends Component {
     }
   }
 
+  createMessage(newMessageText) {
+    this.messagesRef.push({
+      username: this.props.user ? this.props.user.displayName : "Guest",
+      content: newMessageText,
+
+      roomId: this.props.activeRoom.key
+    });
+    this.setState({ newMessageText: " " });
+  }
+
+  handleChange(e) {
+    e.preventDefault();
+    this.setState({ newMessageText: e.target.value });
+  }
+
   showMessages(activeRoom) {
     this.setState({
       displayedMessages: this.state.allMessages.filter(
@@ -37,6 +53,7 @@ class MessageList extends Component {
       )
     });
   }
+
   render() {
     return (
       <section className="message-list">
@@ -51,6 +68,22 @@ class MessageList extends Component {
             </ul>
           ))}
         </ul>
+        <form
+          id="create-message"
+          onSubmit={e => {
+            e.preventDefault();
+            this.createMessage(this.state.newMessageText);
+          }}
+        >
+          <input
+            type="text"
+            value={this.state.newMessageText}
+            onChange={this.handleChange.bind(this)}
+            name="newMessageText"
+            placeholder="Write your message here..."
+          />
+          <input type="submit" value="Send" />
+        </form>
       </section>
     );
   }
