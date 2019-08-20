@@ -44,9 +44,9 @@ class RoomList extends Component {
       <section className="room-list">
         {" "}
         {this.state.rooms.map(room => (
-          <ul key={room.key}>
+          <ul className="room-name" key={room.key}>
             <button
-              className="room-name"
+              className="button"
               onClick={() => this.props.setActiveRoom(room)}
             >
               {room.name}
@@ -60,6 +60,7 @@ class RoomList extends Component {
           }}
         >
           <input
+            id="text-input"
             type="text"
             value={this.state.newRoomName}
             onChange={this.handleChange.bind(this)}

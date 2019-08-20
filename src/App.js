@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import RoomList from "./components/RoomList";
 import MessageList from "./components/MessageList";
+import User from "./components/User";
 import * as firebase from "firebase";
+import "./App.css";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -26,6 +28,10 @@ class App extends Component {
     };
   }
 
+  setUser(user) {
+    this.setState({ user: user });
+  }
+
   setActiveRoom(room) {
     this.setState({ activeRoom: room });
   }
@@ -34,11 +40,19 @@ class App extends Component {
     return (
       <div className="App">
         <div className="RoomList">
-          <RoomList
-            firebase={firebase.app()}
-            activeRoom={this.state.activeRoom}
-            setActiveRoom={this.setActiveRoom.bind(this)}
-          />
+          <aside id="sidebar">
+            <h1 className="AppLogo">Bloc Chat</h1>
+            <User
+              firebase={firebase.app()}
+              setUser={this.setUser.bind(this)}
+              user={this.state.user}
+            />
+            <RoomList
+              firebase={firebase.app()}
+              activeRoom={this.state.activeRoom}
+              setActiveRoom={this.setActiveRoom.bind(this)}
+            />
+          </aside>
         </div>
         <div className="MessageList">
           <MessageList

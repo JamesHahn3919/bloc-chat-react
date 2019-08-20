@@ -1,11 +1,41 @@
 .App {
   text-align: center;
 }
+#sidebar {
+  float: left;
+  width: 200px;
+  height: 700px;
+  border: 3px solid steelblue;
+}
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.room-name {
+  width: 75px;
+  margin: 25px;
+}
+
+.room-title {
+  text-align: left;
+  padding-left: 350px;
+  padding-top: 50px;
+  text-decoration-line: underline;
+  text-underline-position: below;
+}
+
+.message-list {
+  text-align: center;
+}
+
+#messages {
+  padding-top: 40px;
+}
+
+.button {
+  margin: 0 auto;
+  width: 75px;
+}
+
+#text-input {
+  width: 100px;
 }
 
 .App-header {

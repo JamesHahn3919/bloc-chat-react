@@ -40,12 +40,12 @@ class MessageList extends Component {
   render() {
     return (
       <section className="message-list">
-        <h1 className="room-name">
+        <h1 className="room-title">
           {this.props.activeRoom ? this.props.activeRoom.name : ""}
         </h1>
-        <ul id="message-list">
+        <ul>
           {this.state.displayedMessages.map(message => (
-            <ul key={message.key}>
+            <ul id="messages" key={message.key}>
               {" "}
               {message.username}: {message.content} {message.sentAt}{" "}
             </ul>
