@@ -64,7 +64,9 @@ class MessageList extends Component {
           {this.state.displayedMessages.map(message => (
             <ul id="messages" key={message.key}>
               {" "}
-              {message.username}: {message.content} {message.sentAt}{" "}
+              <div id="message">
+                {message.username}: {message.content} {message.sentAt}{" "}
+              </div>
             </ul>
           ))}
         </ul>
