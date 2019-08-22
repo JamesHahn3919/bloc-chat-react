@@ -40,7 +40,9 @@ class User extends Component {
         </div>
         <button
           className="sign-in-out"
-          onClick={this.props.user ? this.signOut : this.signIn.bind}
+          onClick={
+            this.props.user ? this.signOut.bind(this) : this.signIn.bind(this)
+          }
         >
           <span> Sign {this.props.user ? "out" : "in"}</span>
         </button>{" "}

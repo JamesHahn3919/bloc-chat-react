@@ -43,7 +43,7 @@ class App extends Component {
           <aside id="sidebar">
             <h1 className="AppLogo">Bloc Chat</h1>
             <User
-              firebase={firebase.app()}
+              firebase={firebase}
               setUser={this.setUser.bind(this)}
               user={this.state.user}
             />
