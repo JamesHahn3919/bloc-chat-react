@@ -6,7 +6,7 @@ class User extends Component {
       this.props.setUser(user);
     });
   }
-  signIn() {
+  signIn = () => {
     var provider = new this.props.firebase.auth.GoogleAuthProvider();
     this.props.firebase
       .auth()
@@ -15,7 +15,7 @@ class User extends Component {
         const user = result.user;
         this.props.setUser(user);
       });
-  }
+  };
 
   newMethod() {
     return new this.props.firebase.auth.GoogleAuthProvider();
@@ -40,9 +40,7 @@ class User extends Component {
         </div>
         <button
           className="sign-in-out"
-          onClick={
-            this.props.user ? this.signOut.bind(this) : this.signIn.bind(this)
-          }
+          onClick={this.props.user ? this.signOut : this.signIn.bind}
         >
           <span> Sign {this.props.user ? "out" : "in"}</span>
         </button>{" "}
