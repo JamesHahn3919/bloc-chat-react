@@ -43,7 +43,7 @@ class App extends Component {
           <aside id="sidebar">
             <h1 className="AppLogo">Bloc Chat</h1>
             <User
-              firebase={firebase.app()}
+              firebase={firebase}
               setUser={this.setUser.bind(this)}
               user={this.state.user}
             />
@@ -56,8 +56,9 @@ class App extends Component {
         </div>
         <div className="MessageList">
           <MessageList
-            firebase={firebase.app()}
+            firebase={firebase}
             activeRoom={this.state.activeRoom}
+            user={this.state.user}
           />
         </div>
       </div>
